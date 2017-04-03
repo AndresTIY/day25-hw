@@ -17,7 +17,6 @@ export default function app() {
       return initialState;
     }
 
-
   }//end of reducer
   const store = createStore(reducer, initialState);
 
@@ -26,8 +25,10 @@ export default function app() {
     $('#app').html(state.view(store));
   };
 
-  store.subscribe(render);
 
+
+  store.subscribe(render);
+  store.dispatch({type:"NOOP"});
 
 
 
@@ -36,34 +37,47 @@ export default function app() {
 
 
   //-------Menu View-------
-  function menuView(){
+  function menuView(store){
     let $html = $(`
+        <div>
         <header>
           <h1>Dres Cafe</h1>
         </header>
         <div class="container">
           <h2>Menu</h2>
-          <div class="menu">${menuFiller}</div>
-        </div>`)
+          <div class="menu"></div>
+        </div></div>`)
 
-    let menuFiller = menuFill();
+
+    var menuFiller = menuFill(store);
+    $($html).find('.menu').html(menuFiller);
+    var showCart = cartView(store);
+    $($html).append(showCart);
+
+
     return $html;
   }//end of menuView
 
   //------Menu Populate View?----
-  function menuFill(){
+  function menuFill(store){
     let $html = $(`
       <h3 class="category"></h3>
       <div class="item-card">
         <p class="item-line">
-          <span class="item"></span>
-          <span class="price"></span>
+          <span class="item">item</span>
+          <span class="price">price</span>
         </p>
         <p class="descr-line">
-          <span class="description"></span>
-          <span class="icons"></span>
+          <span class="description">description</span>
+          <span class="icons">icons</span>
         </p>
+        <button>Add To Cart</button
     </div>`);
+
+    let $item = $($html).find('.item');
+    let $price = $($html).find('.price');
+    let $descr = $($html).find('.description')
+    let $icon = $($html).find('.icons')
 
 
     return $html;
@@ -71,17 +85,17 @@ export default function app() {
 
 
   //------Cart View--------
-  function cartView(){
+  function cartView(store){
     let $html = $(`
       <div class="cart-card">
         <h3>Your Order</h3>
         <p class="cart-items">
-          <span class="cart-item"></span>
-          <span class="cart-price"></span>
+          <span class="cart-item">item</span>
+          <span class="cart-price">price</span>
         </p>
-        <p class="subtotal"></p>
-        <p class="tax"></p>
-        <p class="total"></p>
+        <p class="subtotal">subtotal</p>
+        <p class="tax">tax</p>
+        <p class="total">total</p>
         <button type="button" name="button">ORDER NOW</button>
       </div>`)
 
@@ -89,7 +103,8 @@ export default function app() {
   }//end of cartView
 
   //------Confirmation View---
-  function confirmView(){
+  function confirmView(store){
 
   }
+
 }//end of export

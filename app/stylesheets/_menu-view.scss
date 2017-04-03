@@ -1,6 +1,17 @@
 .container{
   width: 70%;
   float: left;
+  button {
+    font-size: .8rem;
+    background: $color-darker;
+    color: #050505;
+    border: 5px $color-darkest;
+    margin-bottom: 1rem;
+  }
+  button:hover{
+    background: $color-darkest;
+
+  }
 }
 .category {
   border-top: 2px solid;
@@ -20,4 +31,5 @@
   .icons {
     float: right;
   }
+
 }
