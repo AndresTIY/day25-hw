@@ -1,0 +1,24 @@
+.container{
+  h2{
+    // border-bottom: 2px solid;
+  }
+}
+.category {
+  border-top: 2px solid;
+}
+.item-line {
+  content: "",
+  display: block;
+  clear: both;
+  .price {
+    float: right; }
+}
+
+.descr-line {
+  content: "",
+  display: block;
+  clear: both;
+  .icons {
+    float: right;
+  }
+}
