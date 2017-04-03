@@ -78,6 +78,12 @@ export default function app() {
     let $price = $($html).find('.price');
     let $descr = $($html).find('.description')
     let $icon = $($html).find('.icons')
+    let $addToCart = $($html).find('button');
+
+
+    $addToCart.on('click', function(e){
+      console.log('it clicks!');
+    })
 
 
     return $html;
@@ -98,6 +104,15 @@ export default function app() {
         <p class="total">total</p>
         <button type="button" name="button">ORDER NOW</button>
       </div>`)
+
+    let $cartItem = $($html).find('.cart-item');
+    let $cartPrice = $($html).find('.cart-price');
+    let $subtotal = $($html).find('.subtotal');
+    let $total = $($html).find('.total');
+    let $orderBtn = $($html).find('button');
+    $orderBtn.on('click', function(e){
+      console.log('order button clicks!');
+    })
 
     return $html;
   }//end of cartView
