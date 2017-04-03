@@ -2,7 +2,7 @@ import { createStore } from 'redux'
 
 export default function app() {
   const url = 'http://tiny-za-server.herokuapp.com/collections/dres-cafe'
-  const apiUrl = 'https://tiy-austin-front-end-engineering.github.io/restaurantApi/fancy.json';
+  const apiUrl = 'https://tiy-austin-front-end-engineering.github.io/restaurantApi/cafe.json';
 
   const initialState = {
     cart: {},
@@ -16,6 +16,26 @@ export default function app() {
     if (currentState === undefined){
       return initialState;
     }
+
+    switch(action.type){
+      case "LOAD_ITEMS":
+        $.getJSON(apiUrl).then(function(data, i, arr){
+          // store.dispatch({type:"ITEMS_LOADED", allData: data})
+          console.log(Object.keys(data));
+        });
+        return currentState;
+
+      case "ITEMS_LOADED":
+
+      case "NOOP":
+        return currentState;
+
+      default:
+        return currentState;
+    }//end of switch
+
+
+
 
   }//end of reducer
   const store = createStore(reducer, initialState);
@@ -53,6 +73,8 @@ export default function app() {
     $($html).find('.menu').html(menuFiller);
     var showCart = cartView(store);
     $($html).append(showCart);
+
+    store.dispatch({type:"LOAD_ITEMS"})
 
 
     return $html;
