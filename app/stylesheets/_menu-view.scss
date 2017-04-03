@@ -1,13 +1,12 @@
 .container{
-  h2{
-    // border-bottom: 2px solid;
-  }
+  width: 70%;
+  float: left;
 }
 .category {
   border-top: 2px solid;
 }
 .item-line {
-  content: "",
+  content: "";
   display: block;
   clear: both;
   .price {
@@ -15,7 +14,7 @@
 }
 
 .descr-line {
-  content: "",
+  content: "";
   display: block;
   clear: both;
   .icons {

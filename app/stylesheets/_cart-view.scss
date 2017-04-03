@@ -1,0 +1,38 @@
+.cart-card {
+
+  width: 20%;
+  border: 2px solid;
+  float: right;
+  margin-top: 2rem;
+  font-size: .8rem;
+  text-align: center;
+  h3 {
+    text-align: center;
+  }
+  .cart-items {
+    border-top: 2px dotted;
+
+    margin: 2rem 0;
+    .cart-item {
+      float: left;
+      margin-left: .5rem;
+    }
+    .cart-price{
+      float: right;
+      margin-right: .5rem;
+    }
+
+  }
+  p {
+    text-align: right;
+  }
+  button {
+    font-size: 1.2rem;
+    background: $color-darker;
+    color: #050505;
+    border: 5px $color-darkest;
+    margin-bottom: 1rem;
+  }
+
+
+}
