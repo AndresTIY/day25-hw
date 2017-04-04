@@ -28,12 +28,14 @@
 
   - what custom functions does each model need to be presented?
     - cart object needs a constructor?
+    - order now button should send CART OBJECT and TOTAL to server
     - subtotal, forEach(item, i, arr){total += item.price}
       - should run every time anything gets added or deleted
 
 - Views
   - how many views will you need? 3
     - menu-view, retrieves menu items
+      - icons need to be displayed under price, active if true, greyed out else
       - categories:
         - breakfast,
         - sandwiches,
@@ -58,6 +60,8 @@
       - tax
       - total with tax+subtotal
       - order now button
+        - Button Should Send Order to Tiny-Za
+        - What get's sent?
     - confirmation-view
       - display confirmation message
       - display a receipt
@@ -65,11 +69,20 @@
 
   - what events does each view listen to?
     - listens for change events, retrieves new data from store and provides new data to entire tree of their child views
-    - menu view should listen for click event
+    - menu view
+      - should listen for click event
+      - check for local fav, low sodium, under 500 cals, and make icon active if true
+
+
     - cart-view should do the adding
+
     - confirmation-view listens for ORDER NOW button
 
 
 - Actions
   - how many actions will I need?
   - what data will each Action be dispatched with?
+
+### Steps
+- find all classes that need to take in items from api
+- initial case should load the full menu, need to extract data from server first

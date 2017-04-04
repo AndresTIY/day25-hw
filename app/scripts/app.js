@@ -35,6 +35,15 @@ export default function app() {
 
       return Object.assign({}, currentState, newState);
 
+      case "ADD_ITEM":
+        var newState = {
+          cart:{
+            action.item: action.price,}
+        }
+        console.log(newState);
+        return Object.assign({}, currentState, newState);
+
+
 
       case "NOOP":
         return currentState;
@@ -135,8 +144,10 @@ export default function app() {
         </div>`)
         $(appendElem).append($menuItems)
         let $addToCart = $($menuItems).find('button');
+
         $addToCart.on('click', function(e){
           console.log('it clicks!');
+          store.dispatch({type:"ADD_ITEM", item: item.item, price: item.price})
         })
       })
 
