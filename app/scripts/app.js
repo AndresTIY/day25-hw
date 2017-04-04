@@ -108,20 +108,34 @@ export default function app() {
       dataType: 'json'
     }).then ((data)=>{
       //append items
-      (data.breakfast)
-      (data.sandwiches)
-      (data.toppings)
-      (data.sides)
-      (data.salads)
-      (data.soups)
-      (data.drinks)
-      (data.desserts)
-      (data.veraDesserts)
+      appendAll(data.breakfast, bfast)
+      appendAll(data.sandwiches, sandwich)
+      appendAll(data.toppings, toppings)
+      appendAll(data.sides, sides)
+      appendAll(data.salads, salads)
+      appendAll(data.soups, soups)
+      appendAll(data.drinks, drinks)
+      appendAll(data.desserts, desserts)
+      appendAll(data.veraDesserts, vera)
     })
 
     function appendAll(dataCategory, appendElem ){
-      // dataCategory.
-    }
+      dataCategory.forEach(function(item, i, arr){
+        var $menuItems = $(`
+          <div class="item-card">
+            <p class="item-line">
+              <span class="item">${item.item}</span>
+              <span class="price">${item.price}</span>
+            </p>
+            <p class="descr-line">
+              <span class="description">${item.description}</span>
+              <span class="icons">icons</span>
+            </p>
+            <button>Add To Cart</button
+        </div>`)
+        $(appendElem).append($menuItems)
+      })
+    }//end of appendAll
 
 
 
