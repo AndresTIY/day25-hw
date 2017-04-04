@@ -5,6 +5,7 @@ export default function app() {
   const apiUrl = 'https://tiy-austin-front-end-engineering.github.io/restaurantApi/cafe.json';
 
   const initialState = {
+
     cart: {},
     subtotal: null,
     tax: 1.08,
@@ -20,12 +21,20 @@ export default function app() {
     switch(action.type){
       case "LOAD_ITEMS":
         $.getJSON(apiUrl).then(function(data, i, arr){
-          // store.dispatch({type:"ITEMS_LOADED", allData: data})
-          console.log(Object.keys(data));
+          store.dispatch({
+            type:"ITEMS_LOADED",
+            allData: data,
         });
+      })
         return currentState;
 
       case "ITEMS_LOADED":
+        var newState = {
+          allData: action.allData,
+        }
+
+      return Object.assign({}, currentState, newState);
+
 
       case "NOOP":
         return currentState;
@@ -48,7 +57,7 @@ export default function app() {
 
 
   store.subscribe(render);
-  store.dispatch({type:"NOOP"});
+  store.dispatch({type:"LOAD_ITEMS"});
 
 
 
@@ -58,49 +67,93 @@ export default function app() {
 
   //-------Menu View-------
   function menuView(store){
+    let state = store.getState();
     let $html = $(`
         <div>
-        <header>
-          <h1>Dres Cafe</h1>
-        </header>
-        <div class="container">
-          <h2>Menu</h2>
-          <div class="menu"></div>
-        </div></div>`)
+          <header>
+            <h1>Dres Cafe</h1>
+          </header>
+          <div class="container">
+            <h2>Menu</h2>
+            <div class="menu"></div>
+          </div>
+        </div>`)
 
 
-    var menuFiller = menuFill(store);
-    $($html).find('.menu').html(menuFiller);
+
+    // var menuFiller = menuFill(store);
+
+    if (state.allData !== undefined){
+      let categories = Object.keys(state.allData);
+      // console.log(state.allData);
+      var item = [];
+      var price = [];
+      var description = [];
+      for(var key in state.allData){
+        state.allData[key].forEach(function(current, i, arr){
+          // console.log(current.item);
+          item.push(current.item)
+          price.push(current.price);
+          description.push(current.description);
+
+          // $html.find('.menu').append(menufill(store, item, price, description))
+        })
+      }
+
+
+
+      item.forEach(function(item, i, arr){
+        // $html.find('.menu').append(menuFill(store, item))
+
+      })
+
+      categories.forEach(function(title, i, arr){
+
+        // $html.find('.menu').append(menuFill(store, title))
+
+      })
+    }
+
+
+    // var fillCats =
+    // state.allData.forEach(function(item, i, arr){
+    //   console.log(item);
+    // })
+
+
+
+    $($html).find('.menu').html(menuFill);
     var showCart = cartView(store);
     $($html).append(showCart);
 
-    store.dispatch({type:"LOAD_ITEMS"})
 
 
     return $html;
   }//end of menuView
 
   //------Menu Populate View?----
-  function menuFill(store){
-    let $html = $(`
-      <h3 class="category"></h3>
+  function menuFill(store, title, item, price, description){
+    // let state = store.getState();
+    // let categories = Object.keys(state.allData);
+    let $itemCard = $(`
+      <div><h3 class="category">${title}</h3></div>
       <div class="item-card">
         <p class="item-line">
-          <span class="item">item</span>
-          <span class="price">price</span>
+          <span class="item">${item}</span>
+          <span class="price">${price}</span>
         </p>
         <p class="descr-line">
-          <span class="description">description</span>
+          <span class="description">${description}</span>
           <span class="icons">icons</span>
         </p>
         <button>Add To Cart</button
     </div>`);
-
-    let $item = $($html).find('.item');
-    let $price = $($html).find('.price');
-    let $descr = $($html).find('.description')
-    let $icon = $($html).find('.icons')
-    let $addToCart = $($html).find('button');
+    let $category = $($itemCard).find('.category');
+    let $item = $($itemCard).find('.item');
+    let $price = $($itemCard).find('.price');
+    let $descr = $($itemCard).find('.description')
+    let $icon = $($itemCard).find('.icons')
+    let $addToCart = $($itemCard).find('button');
 
 
     $addToCart.on('click', function(e){
@@ -108,7 +161,7 @@ export default function app() {
     })
 
 
-    return $html;
+    return $itemCard;
   }
 
 
