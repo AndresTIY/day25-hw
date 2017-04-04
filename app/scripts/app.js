@@ -134,99 +134,26 @@ export default function app() {
             <button>Add To Cart</button
         </div>`)
         $(appendElem).append($menuItems)
+        let $addToCart = $($menuItems).find('button');
+        $addToCart.on('click', function(e){
+          console.log('it clicks!');
+        })
       })
+
+
+
     }//end of appendAll
+    $($html).append(cartView())
 
 
 
-    // var menuFiller = menuFill(store);
-
-    // if (state.allData !== undefined){
-    //   let categories = Object.keys(state.allData);
-    //   // console.log(state.allData);
-    //   var item = [];
-    //   var price = [];
-    //   var description = [];
-    //   for(var key in state.allData){
-    //     state.allData[key].forEach(function(current, i, arr){
-    //       // console.log(current.item);
-    //       item.push(current.item)
-    //       price.push(current.price);
-    //       description.push(current.description);
-    //
-    //       // $html.find('.menu').append(menufill(store, item, price, description))
-    //     })
-    //   }
-
-
-
-    //   item.forEach(function(item, i, arr){
-    //     // $html.find('.menu').append(menuFill(store, item))
-    //
-    //   })
-    //
-    //   categories.forEach(function(title, i, arr){
-    //
-    //     // $html.find('.menu').append(menuFill(store, title))
-    //
-    //   })
-    // }
-
-
-    // var fillCats =
-    // state.allData.forEach(function(item, i, arr){
-    //   console.log(item);
-    // })
-
-
-
-    // $($html).find('.menu').html(menuFill);
-    // var showCart = cartView(store);
-    // $($html).append(showCart);
 
 
 
     return $html;
   }//end of menuView
 
-  //------Menu Populate View?----
-  function menuFill(store, title, item, price, description){
-    // let state = store.getState();
-    // let categories = Object.keys(state.allData);
-    let $itemCard = $(`
-      <div><h3 class="category">${title}</h3></div>
-      <div class="item-card">
-        <p class="item-line">
-          <span class="item">${item}</span>
-          <span class="price">${price}</span>
-        </p>
-        <p class="descr-line">
-          <span class="description">${description}</span>
-          <span class="icons">icons</span>
-        </p>
-        <button>Add To Cart</button
-    </div>`);
 
-    let $categories
-
-
-
-
-    let $category = $($itemCard).find('.category');
-    let $item = $($itemCard).find('.item');
-    let $price = $($itemCard).find('.price');
-    let $descr = $($itemCard).find('.description')
-    let $icon = $($itemCard).find('.icons')
-    let $addToCart = $($itemCard).find('button');
-
-
-    $addToCart.on('click', function(e){
-      console.log('it clicks!');
-    })
-
-
-    return $itemCard;
-  }
 
 
   //------Cart View--------
