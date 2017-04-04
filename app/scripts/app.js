@@ -40,7 +40,7 @@ export default function app() {
         var newState = {
           cart: cartItem
         }
-        postIt(store, cartItem)
+        // postIt(store, cartItem)
 
         console.log(newState);
 
@@ -156,6 +156,7 @@ export default function app() {
 
         $addToCart.on('click', function(e){
           console.log('it clicks!');
+          // addCartItem(store, item.item, item.price)
           store.dispatch({type:"ADD_ITEM", item: item.item, price: item.price})
         })
       })
@@ -177,19 +178,20 @@ export default function app() {
 
 
   //------Cart View--------
-  function cartView(store){
+  function cartView(store, fun){
     let $html = $(`
       <div class="cart-card">
         <h3>Your Order</h3>
         <p class="cart-items">
-          <span class="cart-item">item</span>
-          <span class="cart-price">price</span>
+
         </p>
         <p class="subtotal">subtotal</p>
         <p class="tax">tax</p>
         <p class="total">total</p>
         <button type="button" name="button">ORDER NOW</button>
       </div>`)
+
+
 
     let $cartItem = $($html).find('.cart-item');
     let $cartPrice = $($html).find('.cart-price');
@@ -200,19 +202,31 @@ export default function app() {
       console.log('order button clicks!');
     })
 
+    function addCartItem(store, item, price ){
+
+      let cartItemHtml = $(`
+        <span class="cart-item">${item}</span>
+        <span class="cart-price">${price}</span>`)
+
+      $($html).find('.cart-items').append(cartItemHtml)
+      // $($html).append(cartItemHtml);
+
+    }
+
     return $html;
   }//end of cartView
+
   //--------ajax post-------
-  function postIt(store, cartItem){
-    $.ajax({
-      type: 'POST',
-      url: url,
-      contentType: 'application/json',
-      data: JSON.stringify({
-        cart: cartItem
-      })
-    })
-  }
+  // function postIt(store, cartItem){
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: url,
+  //     contentType: 'application/json',
+  //     data: JSON.stringify({
+  //       cart: cartItem
+  //     })
+  //   })
+  // }
 
   //------Confirmation View---
   function confirmView(store){
