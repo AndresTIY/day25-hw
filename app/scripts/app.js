@@ -102,6 +102,27 @@ export default function app() {
     let desserts = $menu.find('.desserts')
     let vera = $menu.find('.vera')
 
+    $.ajax({
+      type: "GET",
+      url: apiUrl,
+      dataType: 'json'
+    }).then ((data)=>{
+      //append items
+      (data.breakfast)
+      (data.sandwiches)
+      (data.toppings)
+      (data.sides)
+      (data.salads)
+      (data.soups)
+      (data.drinks)
+      (data.desserts)
+      (data.veraDesserts)
+    })
+
+    function appendAll(dataCategory, appendElem ){
+      // dataCategory.
+    }
+
 
 
     // var menuFiller = menuFill(store);
