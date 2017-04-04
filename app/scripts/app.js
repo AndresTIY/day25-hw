@@ -36,12 +36,21 @@ export default function app() {
       return Object.assign({}, currentState, newState);
 
       case "ADD_ITEM":
+        var cartItem = [action.item, action.price]
         var newState = {
-          cart:{
-            action.item: action.price,}
+          cart: cartItem
         }
+        postIt(store, cartItem)
+
         console.log(newState);
+
         return Object.assign({}, currentState, newState);
+
+      case"ADD_TO_CART":
+        console.log(cart);
+        // console.log(newState);
+        return Object.assign({}, currentState, newState);
+
 
 
 
@@ -193,6 +202,17 @@ export default function app() {
 
     return $html;
   }//end of cartView
+  //--------ajax post-------
+  function postIt(store, cartItem){
+    $.ajax({
+      type: 'POST',
+      url: url,
+      contentType: 'application/json',
+      data: JSON.stringify({
+        cart: cartItem
+      })
+    })
+  }
 
   //------Confirmation View---
   function confirmView(store){
