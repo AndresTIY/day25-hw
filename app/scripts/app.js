@@ -79,40 +79,63 @@ export default function app() {
           </div>
         </div>`)
 
+    let $menu = $($html).find('.menu');
+    $($menu).html(`
+      <div><h3 class="bfast">Breakfast</h3></div>
+      <div><h3 class="sandwich">Sandwiches</h3></div>
+      <div><h3 class="toppings">Toppings</h3></div>
+      <div><h3 class="sides">Sides</h3></div>
+      <div><h3 class="salads">Salads</h3></div>
+      <div><h3 class="soups">Soups</h3></div>
+      <div><h3 class="drinks">Drinks</h3></div>
+      <div><h3 class="desserts">Desserts</h3></div>
+      <div><h3 class="vera">veraDesserts</h3></div>
+      `);
+
+    let bfast = $menu.find('.bfast')
+    let sandwich = $menu.find('.sandwich')
+    let toppings = $menu.find('.toppings')
+    let sides = $menu.find('.sides')
+    let salads = $menu.find('.salads')
+    let soups = $menu.find('.soups')
+    let drinks = $menu.find('.drinks')
+    let desserts = $menu.find('.desserts')
+    let vera = $menu.find('.vera')
+
 
 
     // var menuFiller = menuFill(store);
 
-    if (state.allData !== undefined){
-      let categories = Object.keys(state.allData);
-      // console.log(state.allData);
-      var item = [];
-      var price = [];
-      var description = [];
-      for(var key in state.allData){
-        state.allData[key].forEach(function(current, i, arr){
-          // console.log(current.item);
-          item.push(current.item)
-          price.push(current.price);
-          description.push(current.description);
+    // if (state.allData !== undefined){
+    //   let categories = Object.keys(state.allData);
+    //   // console.log(state.allData);
+    //   var item = [];
+    //   var price = [];
+    //   var description = [];
+    //   for(var key in state.allData){
+    //     state.allData[key].forEach(function(current, i, arr){
+    //       // console.log(current.item);
+    //       item.push(current.item)
+    //       price.push(current.price);
+    //       description.push(current.description);
+    //
+    //       // $html.find('.menu').append(menufill(store, item, price, description))
+    //     })
+    //   }
 
-          // $html.find('.menu').append(menufill(store, item, price, description))
-        })
-      }
 
 
-
-      item.forEach(function(item, i, arr){
-        // $html.find('.menu').append(menuFill(store, item))
-
-      })
-
-      categories.forEach(function(title, i, arr){
-
-        // $html.find('.menu').append(menuFill(store, title))
-
-      })
-    }
+    //   item.forEach(function(item, i, arr){
+    //     // $html.find('.menu').append(menuFill(store, item))
+    //
+    //   })
+    //
+    //   categories.forEach(function(title, i, arr){
+    //
+    //     // $html.find('.menu').append(menuFill(store, title))
+    //
+    //   })
+    // }
 
 
     // var fillCats =
@@ -122,9 +145,9 @@ export default function app() {
 
 
 
-    $($html).find('.menu').html(menuFill);
-    var showCart = cartView(store);
-    $($html).append(showCart);
+    // $($html).find('.menu').html(menuFill);
+    // var showCart = cartView(store);
+    // $($html).append(showCart);
 
 
 
@@ -148,6 +171,12 @@ export default function app() {
         </p>
         <button>Add To Cart</button
     </div>`);
+
+    let $categories
+
+
+
+
     let $category = $($itemCard).find('.category');
     let $item = $($itemCard).find('.item');
     let $price = $($itemCard).find('.price');
